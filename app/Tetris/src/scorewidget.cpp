@@ -1,4 +1,5 @@
 #include "inc/scorewidget.h"
+#include "NextShape.h"
 #include<QSize>
 
 
