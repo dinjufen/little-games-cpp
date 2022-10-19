@@ -6,6 +6,7 @@
 ScoreWidget::ScoreWidget(QWidget *parent) : QWidget(parent)
 {
 	setFixedWidth(350);
+
 }
 
 
