@@ -2,13 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "inc/DisplayWidget.h"
-#include "inc/scorewidget.h"
+#include "DisplayWidget.h"
+#include "ScoreWidget.h"
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
-  private:
+Q_OBJECT
+private:
     DisplayWidget* disWidget = nullptr;
     ScoreWidget* scoreWidget = nullptr;
     QWidget* centralWidget = nullptr;

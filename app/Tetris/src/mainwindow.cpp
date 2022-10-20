@@ -1,8 +1,12 @@
-#include "inc/mainwindow.h"
+//
+// Created by 丁俊峰 on 2022/10/20.
+//
+
+#include "mainwindow.h"
 #include<QHBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+        : QMainWindow(parent)
 {
     setWindowTitle("Tetris");
     disWidget = new DisplayWidget(this);

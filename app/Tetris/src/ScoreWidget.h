@@ -4,13 +4,13 @@
 #include <QWidget>
 #include <QLabel>
 #include <QFormLayout>
-#include "button.h"
+#include "Button.h"
 #include "NextShape.h"
-#include "shape_factory.h"
+#include "ShapeFactory.h"
 
 class ScoreWidget : public QWidget
 {
-    Q_OBJECT
+Q_OBJECT
 private:
     QWidget* shape_widget = nullptr;
     QLabel* lb_scre = nullptr;

@@ -1,4 +1,5 @@
-#include "inc/mainwindow.h"
+#include "mainwindow.h"
+#include "ShapeFactory.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

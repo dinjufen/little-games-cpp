@@ -4,15 +4,15 @@
 #include <QBrush>
 #include <QPainter>
 #include <QPen>
-#include "shape_factory.h"
+#include "ShapeFactory.h"
 
 class NextShape : public QWidget {
 private:
-	QPixmap* pix = nullptr;
+    QPixmap* pix = nullptr;
 public:
-	NextShape(QWidget* parent);
+    NextShape(QWidget* parent);
 
-	void drawShape();
+    void drawShape();
 
-	virtual void paintEvent(QPaintEvent* event);
+    virtual void paintEvent(QPaintEvent* event);
 };
