@@ -1,13 +1,15 @@
 #include "NextShape.h"
+#include "ShapeFactory.h"
 #include <Qt>
 
 NextShape::NextShape(QWidget* parent) {
+    setFixedSize(250, 250);
     pix = new QPixmap(size());
     pix->fill(Qt::white);
 }
 
-void NextShape::drawShape() {
-    Shape* next_shape = ShapeFactory::get_next();
+void NextShape::slot_drawShape() {
+    Shape* next_shape = ShapeFactory::GetInstance()->get_next();
     vector<Coor> coor = next_shape->get_vir_coor();
     QPen pen;
     pen.setColor(next_shape->color);

@@ -1,5 +1,5 @@
-#ifndef SCOREWIDGET_H
-#define SCOREWIDGET_H
+#ifndef SCORE_WIDGET_H
+#define SCORE_WIDGET_H
 
 #include <QWidget>
 #include <QLabel>
@@ -12,18 +12,24 @@ class ScoreWidget : public QWidget
 {
 Q_OBJECT
 private:
-    QWidget* shape_widget = nullptr;
-    QLabel* lb_scre = nullptr;
+    int score = 0;
+
+    QLabel* lb_score = nullptr;
     QLabel* show_score = nullptr;
     QLabel* lb_level = nullptr;
     QLabel* show_level = nullptr;
-
+    Button* btn_restart = nullptr;
+    Button* btn_exit = nullptr;
+public slots:
+    void change_score();
+    void drawShape();
 public:
     ScoreWidget(QWidget *parent = nullptr);
     ~ScoreWidget();
 
+    NextShape* shape_widget = nullptr;
+
     void restart();
-    void change_score();
 };
 
 #endif // SCOREWIDGET_H

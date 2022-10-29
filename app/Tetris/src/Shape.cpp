@@ -2,7 +2,10 @@
 #define WIDTH 10
 #define HEIGHT 20
 
-Shape::Shape(){}
+Shape::Shape(){
+    color = Qt::red;
+    offset.x = 3;
+}
 
 /*
 ת��
@@ -50,26 +53,26 @@ void Shape::move_down() {
     }
     old.x = offset.x;
     old.y = offset.y;
-    offset.y++;
+    offset.y = offset.y + 1;
 }
 
-Coor Shape::get_offset() {
+Coor& Shape::get_offset() {
     return offset;
 }
 
-vector<Coor> Shape::get_vir_coor() {
+vector<Coor>& Shape::get_vir_coor() {
     return coor[cur_angle];
 }
 
-Coor Shape::get_old_offset() {
+Coor& Shape::get_old_offset() {
     return old;
 }
 
-vector<Coor> Shape::get_old_shape() {
+vector<Coor>& Shape::get_old_shape() {
     return cur_angle == 0 ? coor[3] : coor[cur_angle - 1];
 }
 
-vector<Coor> Shape::get_next_shape() {
+vector<Coor>& Shape::get_turn_shape() {
     return cur_angle == 3 ? coor[0] : coor[cur_angle + 1];
 }
 
@@ -77,6 +80,7 @@ vector<Coor> Shape::get_next_shape() {
 ����
 */
 SquareShape::SquareShape() {
+    color = Qt::yellow;
     coor = {
             {
                     Coor(0, 0), Coor(1, 0), Coor(1, 1), Coor(2, 1)
@@ -98,6 +102,7 @@ SquareShape::SquareShape() {
 Z����-1
 */
 ZShape1::ZShape1() {
+    color = Qt::green;
     coor = {
             {Coor(0, 0), Coor(1, 0), Coor(1, 1), Coor(2, 1)},
             {Coor(2, 0), Coor(2, 1), Coor(1, 1), Coor(1, 2)},
@@ -110,6 +115,7 @@ ZShape1::ZShape1() {
 Z����-2
 */
 ZShape2::ZShape2() {
+    color = Qt::blue;
     coor = {
             {Coor(0, 1), Coor(1, 1), Coor(1, 0), Coor(2, 0)},
             {Coor(0, 0), Coor(0, 1), Coor(1, 1), Coor(1, 2)},
@@ -122,6 +128,7 @@ ZShape2::ZShape2() {
 ����
 */
 IShape::IShape() {
+    color = Qt::cyan;
     coor = {
             {Coor(0, 0), Coor(1, 0), Coor(2, 0), Coor(3, 0)},
             {Coor(1, 0), Coor(1, 1), Coor(1, 2), Coor(1, 3)},
@@ -134,6 +141,7 @@ IShape::IShape() {
 L����-1
 */
 LShape1::LShape1() {
+    color = Qt::magenta;
     coor = {
             {Coor(0, 0), Coor(0, 1), Coor(1, 1), Coor(2, 1)},
             {Coor(1, 0), Coor(0, 0), Coor(0, 1), Coor(0, 2)},
@@ -146,6 +154,7 @@ LShape1::LShape1() {
 L Shape 2
 */
 LShape2::LShape2() {
+    color = Qt::darkRed;
     coor = {
             {Coor(0, 1), Coor(1, 1), Coor(2, 1), Coor(2, 0)},
             {Coor(0, 0), Coor(0, 1), Coor(0, 2), Coor(1, 2)},
@@ -158,6 +167,7 @@ LShape2::LShape2() {
 T Shape
 */
 TShape::TShape() {
+    color = Qt::darkGreen;
     coor = {
             {Coor(0, 0), Coor(1, 0), Coor(2, 0), Coor(1, 1)},
             {Coor(1, 0), Coor(1, 1), Coor(1, 2), Coor(0, 1)},

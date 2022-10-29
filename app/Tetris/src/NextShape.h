@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __NEXT_SHAPE__
+#define __NEXT_SHAPE__
 #include <QWidget>
 #include <QPixmap>
 #include <QBrush>
@@ -12,7 +13,10 @@ private:
 public:
     NextShape(QWidget* parent);
 
-    void drawShape();
+    void slot_drawShape();
 
+protected:
     virtual void paintEvent(QPaintEvent* event);
 };
+
+#endif

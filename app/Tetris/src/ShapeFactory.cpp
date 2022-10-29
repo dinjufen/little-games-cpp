@@ -1,41 +1,77 @@
 //
 // Created by 丁俊峰 on 2022/10/20.
 //
-
-#pragma once
 #include "ShapeFactory.h"
-#include <cstdlib>
+#include <QDebug>
+#include <QRandomGenerator>
+#include <memory>
 
-Shape* ShapeFactory::cur_shape = ShapeFactory::random_shape();
-Shape* ShapeFactory::next_shape = ShapeFactory::random_shape();
-
+ShapeFactory* ShapeFactory::instance = nullptr;
 Shape* ShapeFactory::random_shape() {
-    int i = rand() % 7;
+    const int i = QRandomGenerator::global()->bounded(7);
+    Shape* shape = nullptr;
     switch (i) {
         case 0:
-            return new SquareShape();
+            shape = new SquareShape();
         case 1:
-            return new ZShape1();
+            shape = new ZShape1();
         case 2:
-            return new ZShape2();
+            shape = new ZShape2();
         case 3:
-            return new IShape();
+            shape = new IShape();
         case 4:
-            return new LShape1();
+            shape = new LShape1();
         case 5:
-            return new LShape2();
+            shape = new LShape2();
         case 6:
-            return new TShape();
+            shape = new TShape();
+    }
+    return shape;
+}
+
+ShapeFactory::ShapeFactory() {
+
+}
+
+ShapeFactory::~ShapeFactory() {
+    if (cur_shape) {
+        delete cur_shape;
+        cur_shape = nullptr;
+    }
+    if (next_shape) {
+        delete next_shape;
+        next_shape = nullptr;
+    }
+    if (instance) {
+        delete instance;
+        instance = nullptr;
     }
 }
 
-Shape* ShapeFactory::get_shape() {
+ShapeFactory* ShapeFactory::GetInstance() {
+    if (instance == nullptr) {
+        instance = new ShapeFactory();
+    }
+    return instance;
+}
+
+void ShapeFactory::init() {
+    cur_shape = random_shape();
     next_shape = random_shape();
+}
+
+Shape* ShapeFactory::get_shape() {
     return cur_shape;
 }
 
 Shape* ShapeFactory::get_next() {
-    delete cur_shape;
     cur_shape = next_shape;
+    next_shape = random_shape();
     return next_shape;
+}
+
+void ShapeFactory::generate_shape() {
+//    delete cur_shape;
+    cur_shape = next_shape;
+    next_shape = random_shape();
 }

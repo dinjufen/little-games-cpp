@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __SHAPE_H__
+#define __SHAPE_H__
 #include "Coor.h"
 #include <QColor>
 #include <vector>
@@ -8,8 +9,6 @@ using namespace std;
 class Shape {
 private:
     int cur_angle = 0;
-    int length;
-    int speed;
     Coor offset;
     Coor old;
 
@@ -23,11 +22,11 @@ public:
     void move_left();
     void move_right();
     void move_down();
-    Coor get_offset();
-    Coor get_old_offset();
-    vector<Coor> get_vir_coor();
-    vector<Coor> get_old_shape();
-    vector<Coor> get_next_shape();
+    Coor& get_offset();
+    Coor& get_old_offset();
+    vector<Coor>& get_vir_coor();
+    vector<Coor>& get_old_shape();
+    vector<Coor>& get_turn_shape();
 };
 
 class SquareShape : public Shape {
@@ -64,3 +63,5 @@ class TShape : public Shape {
 public:
     TShape();
 };
+
+#endif

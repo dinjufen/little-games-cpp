@@ -34,7 +34,7 @@ if (APPLE)
             src/main.cpp
             src/NextShape.cpp
             src/Shape.cpp
-            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp)
+            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp src/ShapeStore.cpp src/ShapeStore.h)
 else()
     add_executable(${PROJECT_NAME} WIN32
             src/NextShape.h
@@ -45,7 +45,7 @@ else()
             src/main.cpp
             src/NextShape.cpp
             src/Shape.cpp
-            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp)
+            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp src/ShapeStore.cpp src/ShapeStore.h)
 endif()
 
 

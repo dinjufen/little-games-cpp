@@ -1,16 +1,23 @@
-#pragma once
+#ifndef __SHAPE_FACTORY__
+#define __SHAPE_FACTORY__
+
 #include "Shape.h"
 #include <cstdlib>
 
 class ShapeFactory {
 private:
-    static Shape* cur_shape;
-    static Shape* next_shape;
-    static Shape* random_shape();
+    static ShapeFactory* instance;
+    Shape* cur_shape;
+    Shape* next_shape;
+    Shape* random_shape();
+    ShapeFactory();
+    ~ShapeFactory();
 public:
-    ShapeFactory()=delete;
-    ~ShapeFactory()=delete;
-    static void init();
-    static Shape* get_shape();
-    static Shape* get_next();
+    Shape* get_shape();
+    Shape* get_next();
+    void generate_shape();
+    static ShapeFactory* GetInstance();
+    void init();
 };
+
+#endif
