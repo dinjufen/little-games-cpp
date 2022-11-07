@@ -24,7 +24,7 @@ public:
     void move_down();
     Coor& get_offset();
     Coor& get_old_offset();
-    vector<Coor>& get_vir_coor();
+    vector<Coor>& get_coor();
     vector<Coor>& get_old_shape();
     vector<Coor>& get_turn_shape();
 };

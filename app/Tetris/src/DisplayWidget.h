@@ -4,44 +4,25 @@
 #include <QPixmap>
 #include <QPaintEvent>
 #include "Shape.h"
-
-#define ROW 20
-#define COL 10
+#include "ShapeController.h"
 
 class DisplayWidget : public QWidget
 {
     Q_OBJECT
 private:
-    int interval;
     QPixmap* pix = nullptr;
-    int matrix[ROW][COL];
-    int timer_id;
-    int count = 0;
+    vector<Coor> old_coor_list;
 
 protected:
     virtual void paintEvent(QPaintEvent* event) override;
-    virtual void timerEvent(QTimerEvent* event) override;
-    virtual void keyPressEvent(QKeyEvent* event) override;
-
-public:
-    signals:
-        void signalScore(); // 得分
-        void signalShape(); // 请求下一个方块
 
 public:
     DisplayWidget(QWidget* parent = nullptr);
     ~DisplayWidget();
-    void start();
-    void updateMat();
-    void destroyRow(const int row);
-    bool checkOnes(const int row);
-    void drawShape();
-    void clearOldShape(bool turn = false);
-    void drawMat();
-    bool down_blocked();
-    bool right_blocked();
-    bool left_blocked();
-    bool turn_blocked();
+
+public slots:
+    void slotUpdateMat(const vector<bitset<COL>>& mat);
+    void slotUpdateShape(const vector<Coor>& coor_list, const QColor& color);
 };
 
 #endif // DISPLAYWIDGET_H

@@ -2,22 +2,16 @@
 #define __SHAPE_FACTORY__
 
 #include "Shape.h"
-#include <cstdlib>
+#include <vector>
 
 class ShapeFactory {
 private:
-    static ShapeFactory* instance;
-    Shape* cur_shape;
-    Shape* next_shape;
-    Shape* random_shape();
-    ShapeFactory();
-    ~ShapeFactory();
+    ShapeFactory()=delete;
+    ~ShapeFactory()=default;
+//    static const vector<Shape> shape_list;
+
 public:
-    Shape* get_shape();
-    Shape* get_next();
-    void generate_shape();
-    static ShapeFactory* GetInstance();
-    void init();
+    static Shape* get_shape();
 };
 
 #endif

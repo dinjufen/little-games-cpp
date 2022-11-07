@@ -1,6 +1,4 @@
 #include "Shape.h"
-#define WIDTH 10
-#define HEIGHT 20
 
 Shape::Shape(){
     color = Qt::red;
@@ -24,9 +22,6 @@ void Shape::turn() {
 move left one step
 */
 void Shape::move_left() {
-    for (const auto& c : coor[cur_angle]) {
-        if (c.x + offset.x <= 0) return;
-    }
     old.x = offset.x;
     old.y = offset.y;
     offset.x--;
@@ -36,9 +31,6 @@ void Shape::move_left() {
 move right
 */
 void Shape::move_right() {
-    for (const auto& c : coor[cur_angle]) {
-        if (c.x + offset.x >= (WIDTH - 1)) return;
-    }
     old.x = offset.x;
     old.y = offset.y;
     offset.x++;
@@ -48,9 +40,6 @@ void Shape::move_right() {
 move down
 */
 void Shape::move_down() {
-    for (const auto& c : coor[cur_angle]) {
-        if (c.x + offset.y >= (HEIGHT - 1)) return;
-    }
     old.x = offset.x;
     old.y = offset.y;
     offset.y = offset.y + 1;
@@ -60,7 +49,7 @@ Coor& Shape::get_offset() {
     return offset;
 }
 
-vector<Coor>& Shape::get_vir_coor() {
+vector<Coor>& Shape::get_coor() {
     return coor[cur_angle];
 }
 

@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (APPLE)
     set(CMAKE_PREFIX_PATH "~/Qt/5.15.2/clang_64")
+    set(CMAKE_OSX_ARCHITECTURES "x86_64")
 else()
     set(CMAKE_PREFIX_PATH "C:/Qt/5.15.2/msvc2019_64/lib/cmake")
 endif ()
@@ -34,7 +35,7 @@ if (APPLE)
             src/main.cpp
             src/NextShape.cpp
             src/Shape.cpp
-            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp src/ShapeStore.cpp src/ShapeStore.h)
+            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp src/ShapeController.cpp src/ShapeController.h)
 else()
     add_executable(${PROJECT_NAME} WIN32
             src/NextShape.h
@@ -45,7 +46,7 @@ else()
             src/main.cpp
             src/NextShape.cpp
             src/Shape.cpp
-            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp src/ShapeStore.cpp src/ShapeStore.h)
+            src/Button.h src/Button.cpp src/mainwindow.h src/mainwindow.cpp src/ScoreWidget.cpp src/ScoreWidget.h src/Coor.h src/ShapeFactory.cpp src/ShapeController.cpp src/ShapeController.h)
 endif()
 
 

@@ -8,18 +8,13 @@ NextShape::NextShape(QWidget* parent) {
     pix->fill(Qt::white);
 }
 
-void NextShape::slot_drawShape() {
-    Shape* next_shape = ShapeFactory::GetInstance()->get_next();
-    vector<Coor> coor = next_shape->get_vir_coor();
-    QPen pen;
-    pen.setColor(next_shape->color);
-    QBrush brush(Qt::SolidPattern);
-    brush.setColor(next_shape->color);
+void NextShape::slot_drawShape(const vector<Coor>& coor_list, const QColor& color) {
     QPainter painter;
     painter.begin(pix);
-    painter.setBrush(brush);
-    painter.setPen(pen);
-    for (const auto& c : coor) {
+    pix->fill(Qt::white);
+    painter.setBrush(color);
+    painter.setPen(color);
+    for (const auto& c : coor_list) {
         painter.drawRect(50 + c.x * 45, 50 + c.y * 45, 42, 42);
     }
     painter.end();
@@ -29,4 +24,8 @@ void NextShape::slot_drawShape() {
 void NextShape::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
     painter.drawPixmap(0, 0, *pix);
+}
+
+NextShape::~NextShape() {
+    delete pix;
 }

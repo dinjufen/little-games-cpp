@@ -37,6 +37,8 @@
 .vs/
 /cmake-build-debug/
 /cmake-build-release/
+/app/cmake-build-debug/
+/app/cmake-build-release/
 
 /.idea/
 /.vscode/
