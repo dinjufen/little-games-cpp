@@ -4,10 +4,10 @@
 #include "ShapeFactory.h"
 #include <QDebug>
 #include <QRandomGenerator>
+#include <memory>
 
 Shape* ShapeFactory::get_shape() {
-    const int i = QRandomGenerator::global()->bounded(7);
-    qInfo() << "shape index" << i;
+    const int i = QRandomGenerator::global()->bounded(8);
     Shape* shape = nullptr;
     switch (i) {
         case 0:
@@ -30,6 +30,10 @@ Shape* ShapeFactory::get_shape() {
             break;
         case 6:
             shape = new TShape();
+            break;
+        case 7:
+            shape = new IShape2();
+            break;
     }
     return shape;
 }

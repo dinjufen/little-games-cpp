@@ -13,7 +13,8 @@ ShapeController::ShapeController()
     , timer_id(0)
     , total_score(0)
     , matrix(ROW, vector<int>(COL, 0))
-    , mat(ROW, 0) {
+    , mat(ROW, 0)
+    , running(false) {
 
 }
 
@@ -23,16 +24,17 @@ void ShapeController::slotStart() {
     cur_shape = ShapeFactory::get_shape();
     next_shape = ShapeFactory::get_shape();
     timer_id = startTimer(interval);
+    running = true;
     emit sigUpdateNext(next_shape->get_coor(), next_shape->color);
 }
 
 void ShapeController::slotStop() {
+    running = false;
     killTimer(timer_id);
     timer_id = 0;
 }
 
 void ShapeController::slotLevelChanged(int level) {
-    killTimer(timer_id);
     switch (level) {
         case 0:
             interval = 1000;
@@ -44,14 +46,27 @@ void ShapeController::slotLevelChanged(int level) {
             interval = 500;
             break;
     }
-    timer_id = startTimer(interval);
+    if (running) {
+        killTimer(timer_id);
+        timer_id = startTimer(interval);
+    }
+}
+
+void ShapeController::pauseOrStart() {
+    running = !running;
 }
 
 void ShapeController::timerEvent(QTimerEvent *event) {
-    move_down();
+    if (running) {
+        move_down();
+    }
 }
 
 void ShapeController::move_down() {
+    if (!running) return;
+    if (up_blocked()) {
+        emit sigGameOver();
+    }
     if (down_blocked()) {
         const auto coor_list = cur_shape->get_coor();
         const Coor& offset = cur_shape->get_offset();
@@ -96,6 +111,7 @@ void ShapeController::move_down() {
 }
 
 void ShapeController::move_right() {
+    if (!running) return;
     if (!cur_shape) return;
     if (right_blocked()) return;
     cur_shape->move_right();
@@ -109,6 +125,7 @@ void ShapeController::move_right() {
 }
 
 void ShapeController::move_left() {
+    if (!running) return;
     if (!cur_shape) return;
     if (left_blocked()) return;
     cur_shape->move_left();
@@ -122,6 +139,7 @@ void ShapeController::move_left() {
 }
 
 void ShapeController::turn() {
+    if (!running) return;
     if (!cur_shape) return;
     if (turn_blocked()) return;
     cur_shape->turn();
@@ -148,13 +166,18 @@ bool ShapeController::down_blocked() const {
         if (mat[coor.y + offset.y + 1][coor.x + offset.x]) {
             qInfo() << "down blocked 2";
             return true;
-            // TODO 不能继续下移的情况下，如果此时不完全在画布内，则认为游戏结束
         }
     }
     return false;
 }
 
 bool ShapeController::up_blocked() const {
+    const auto& offset = cur_shape->get_offset();
+    for (const auto& coor : cur_shape->get_coor()) {
+        if (mat[coor.y + offset.y][coor.x + offset.x]) {
+            return true;
+        }
+    }
     return false;
 }
 

@@ -105,6 +105,7 @@ Z����-2
 */
 ZShape2::ZShape2() {
     color = Qt::blue;
+    offset.y = -2;
     coor = {
             {Coor(0, 1), Coor(1, 1), Coor(1, 0), Coor(2, 0)},
             {Coor(0, 0), Coor(0, 1), Coor(1, 1), Coor(1, 2)},
@@ -118,6 +119,7 @@ ZShape2::ZShape2() {
 */
 IShape::IShape() {
     color = Qt::cyan;
+    offset.y = -1;
     coor = {
             {Coor(0, 0), Coor(1, 0), Coor(2, 0), Coor(3, 0)},
             {Coor(1, 0), Coor(1, 1), Coor(1, 2), Coor(1, 3)},
@@ -126,11 +128,27 @@ IShape::IShape() {
     };
 }
 
+
+/*
+I Shape
+*/
+IShape2::IShape2() {
+    color = Qt::darkBlue;
+    offset.y = -2;
+    coor = {
+            {Coor(0, 0), Coor(1, 0), Coor(2, 0), Coor(1, 1)},
+            {Coor(1, 0), Coor(1, 1), Coor(1, 2), Coor(0, 1)},
+            {Coor(0, 1), Coor(1, 1), Coor(1, 0), Coor(2, 1)},
+            {Coor(0, 0), Coor(0, 1), Coor(1, 1), Coor(0, 2)}
+    };
+}
+
 /*
 L����-1
 */
 LShape1::LShape1() {
     color = Qt::magenta;
+    offset.y = -3;
     coor = {
             {Coor(0, 0), Coor(0, 1), Coor(1, 1), Coor(2, 1)},
             {Coor(1, 0), Coor(0, 0), Coor(0, 1), Coor(0, 2)},
@@ -144,6 +162,7 @@ L Shape 2
 */
 LShape2::LShape2() {
     color = Qt::darkRed;
+    offset.y = -2;
     coor = {
             {Coor(0, 1), Coor(1, 1), Coor(2, 1), Coor(2, 0)},
             {Coor(0, 0), Coor(0, 1), Coor(0, 2), Coor(1, 2)},
@@ -157,6 +176,7 @@ T Shape
 */
 TShape::TShape() {
     color = Qt::darkGreen;
+    offset.y = -1;
     coor = {
             {Coor(0, 0), Coor(1, 0), Coor(2, 0), Coor(1, 1)},
             {Coor(1, 0), Coor(1, 1), Coor(1, 2), Coor(0, 1)},

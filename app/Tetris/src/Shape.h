@@ -9,11 +9,11 @@ using namespace std;
 class Shape {
 private:
     int cur_angle = 0;
-    Coor offset;
     Coor old;
 
 protected:
     vector<vector<Coor>> coor;
+    Coor offset;
 
 public:
     QColor color;
@@ -63,5 +63,11 @@ class TShape : public Shape {
 public:
     TShape();
 };
+
+class IShape2 : public Shape {
+public:
+    IShape2();
+};
+
 
 #endif

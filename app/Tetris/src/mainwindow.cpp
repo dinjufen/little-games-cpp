@@ -44,6 +44,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         controller->move_right();
     } else if (key == Qt::Key_Up) {
         controller->turn();
+    } else if (key == Qt::Key_Space) {
+        controller->pauseOrStart();
     }
     QMainWindow::keyPressEvent(event);
 }
